@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "./components/Button";
 import Navbar from "./components/Navbar";
 
@@ -9,12 +10,19 @@ function App(props){
         {color: 'success', step: 100},
         {color: 'danger', step: 1000},
     ]
+
+    const [count, setCount] = useState(0);
+
+    function handleClick(step){
+        setCount(count + step)
+    };
+
     return (
         <>
             <Navbar city="Chicago" test={123} name={myName} />
             <div className="container">
-                <h1>Hello {myName} {10 * 5}</h1>
-                {buttons.map((button, idx) => <Button color={button.color} step={button.step} key={idx}/>)}
+                <h1>Hello {myName}, Count: {count}</h1>
+                {buttons.map((button, idx) => <Button color={button.color} step={button.step} key={idx} handleClick={handleClick} count={count}/>)}
             </div>
         </>
         );
