@@ -17,6 +17,8 @@ function App(props){
     const [myName, setMyName] = useState('');
     const [myCity, setMyCity] = useState('');
     const [racers, setRacers] = useState([]);
+    const [season, setSeason] = useState("2022");
+    const [round, setRound] = useState("5");
 
     // Function to handle the button click, that will change the count variable to whatever it currently is plus the step
     function handleClick(step){
@@ -28,19 +30,25 @@ function App(props){
     function updateUserInfo(username, usercity){
         setMyName(username);
         setMyCity(usercity);
-    }
+    };
+
+    // Function that will updated season and round with whatever numbers are passed into it
+    function updateRacerStats(season, round){
+        setSeason(season);
+        setRound(round);
+    };
 
     // Create an effect -> function to execute after every render
     useEffect(() => {
         console.log('useEffect effect callback has been called');
-        fetch("http://ergast.com/api/f1/2022/5/driverStandings.json")
+        fetch(`http://ergast.com/api/f1/${season}/${round}/driverStandings.json`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
                 const racerStandings = data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
                 setRacers(racerStandings);
             })
-    }, []);
+    }, [season, round]); // Will only re-run if season or round change values
 
     return (
         <>
@@ -48,7 +56,7 @@ function App(props){
             <div className="container">
                 <h1>Hello {myName}, Count: {count}</h1>
                 {buttons.map((button, idx) => <Button color={button.color} step={button.step} key={idx} handleClick={handleClick} count={count}/>)}
-                <RacerDisplay racers={racers} />
+                <RacerDisplay racers={racers} updateRacerStats={updateRacerStats} />
             </div>
         </>
         );
