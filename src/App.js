@@ -2,6 +2,7 @@ import { useState } from "react";
 import ButtonDisplay from "./components/ButtonDisplay";
 import Navbar from "./components/Navbar";
 import RacerDisplay from "./components/RacerDisplay";
+import RacerDisplayClass from "./components/RacerDisplayClass";
 
 
 function App(props){
@@ -20,7 +21,8 @@ function App(props){
             <Navbar city={myCity} name={myName} updateUser={updateUserInfo} />
             <div className="container">
                 <ButtonDisplay myName={myName} />
-                <RacerDisplay />
+                {/* <RacerDisplay /> */}
+                <RacerDisplayClass />
             </div>
         </>
     );
