@@ -24,6 +24,7 @@ export default function Navbar(props) {
                     <Link className="navbar-brand" to='/'>Welcome Stranger</Link>
                 }
                     <Link className='nav-link' to='/'>Home</Link>
+                    <Link className='nav-link' to='/buttons'>Buttons</Link>
                     <Link className='nav-link' to='/standings'>Standings</Link>
                 <form action="" className="row" onSubmit={handleForm}>
                     <div className="col">
