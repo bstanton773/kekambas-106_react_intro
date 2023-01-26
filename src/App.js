@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import RacerDisplay from "./components/RacerDisplay";
 import RacerDisplayClass from "./components/RacerDisplayClass";
+import Register from "./components/Register";
 
 
 function App(props){
@@ -27,6 +28,7 @@ function App(props){
                     <Route path='/buttons' element={<ButtonDisplay myName={myName} />} />
                     {/* <Route path='/standings' element={<RacerDisplay />} /> */}
                     <Route path='/standings' element={<RacerDisplayClass />} />
+                    <Route path='/register' element={<Register />} />
                 </Routes>
             </div>
         </>
