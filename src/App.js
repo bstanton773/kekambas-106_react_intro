@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Routes, Route } from 'react-router-dom';
 import ButtonDisplay from "./components/ButtonDisplay";
 import Navbar from "./components/Navbar";
 import RacerDisplay from "./components/RacerDisplay";
@@ -20,12 +21,15 @@ function App(props){
         <>
             <Navbar city={myCity} name={myName} updateUser={updateUserInfo} />
             <div className="container">
-                <ButtonDisplay myName={myName} />
-                {/* <RacerDisplay /> */}
-                <RacerDisplayClass />
+                <Routes>
+                    <Route path='/' element={<ButtonDisplay myName={myName} />} />
+                    {/* <Route path='/standings' element={<RacerDisplay />} /> */}
+                    <Route path='/standings' element={<RacerDisplayClass />} />
+                </Routes>
             </div>
         </>
     );
 }
 
 export default App;
+    
