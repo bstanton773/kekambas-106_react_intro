@@ -24,10 +24,18 @@ export default function Navbar(props) {
                     <Link className="navbar-brand" to='/'>Welcome Stranger</Link>
                 }
                     <Link className='nav-link' to='/'>Home</Link>
-                    <Link className='nav-link' to='/buttons'>Buttons</Link>
-                    <Link className='nav-link' to='/standings'>Standings</Link>
-                    <Link className='nav-link' to='/register'>Register</Link>
-                    <Link className='nav-link' to='/login'>Log In</Link>
+                    {props.loggedIn ? (
+                        <>
+                        <Link className='nav-link' to='/buttons'>Buttons</Link>
+                        <Link className='nav-link' to='/standings'>Standings</Link>
+                        <Link className='nav-link' to='/' onClick={props.logUserOut}>Log Out</Link>
+                        </>
+                    ) : (
+                        <>
+                        <Link className='nav-link' to='/register'>Register</Link>
+                        <Link className='nav-link' to='/login'>Log In</Link>
+                        </>
+                    )}
                     
                 <form action="" className="row" onSubmit={handleForm}>
                     <div className="col">

@@ -18,6 +18,9 @@ function App(props){
     const [message, setMessage] = useState(null);
     const [category, setCategory] = useState(null);
 
+    const now = new Date();
+    const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') && new Date(localStorage.getItem('tokenExp')) > now));
+
     // Function that will update myName and myCity variables with whatever strings are passed into it
     function updateUserInfo(username, usercity){
         setMyName(username);
@@ -29,9 +32,20 @@ function App(props){
         setCategory(category);
     }
 
+    function logUserIn(){
+        setLoggedIn(true);
+    }
+
+    function logUserOut(){
+        setLoggedIn(false);
+        localStorage.removeItem('token');
+        localStorage.removeItem('tokenExp');
+        flashMessage("You have logged out", "primary");
+    }
+
     return (
         <>
-            <Navbar city={myCity} name={myName} updateUser={updateUserInfo} />
+            <Navbar city={myCity} name={myName} updateUser={updateUserInfo} loggedIn={loggedIn} logUserOut={logUserOut} />
             <div className="container">
                 {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
                 <Routes>
@@ -40,7 +54,7 @@ function App(props){
                     {/* <Route path='/standings' element={<RacerDisplay />} /> */}
                     <Route path='/standings' element={<RacerDisplayClass />} />
                     <Route path='/register' element={<Register flashMessage={flashMessage} />} />
-                    <Route path='/login' element={<Login flashMessage={flashMessage} />} />
+                    <Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logUserIn} />} />
                 </Routes>
             </div>
         </>
