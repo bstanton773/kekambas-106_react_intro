@@ -15,9 +15,8 @@ export default class Register extends Component {
         let password = event.target.password.value;
         let confirmPass = event.target.confirmPass.value;
         if (password !== confirmPass){
-            console.warn('Passwords do not match');
+            this.props.flashMessage('Passwords do not match', 'danger');
         } else {
-            console.log('Passwords match');
 
             // Set up the request
             let myHeaders = new Headers();
@@ -37,9 +36,10 @@ export default class Register extends Component {
                 .then(res => res.json())
                 .then(data => {
                     if (data.error){
-                        console.error(data.error)
+                        this.props.flashMessage(data.error, "danger")
                     } else {
                         console.log(data)
+                        this.props.flashMessage(`${data.username} has been created`, 'success')
                         this.setState({
                             redirect: true
                         })
