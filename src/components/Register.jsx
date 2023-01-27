@@ -1,6 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Navigate } from 'react-router-dom';
 
 export default class Register extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            redirect: false
+        }
+    }
 
     handleRegister = event => {
         event.preventDefault();
@@ -33,6 +40,9 @@ export default class Register extends Component {
                         console.error(data.error)
                     } else {
                         console.log(data)
+                        this.setState({
+                            redirect: true
+                        })
                     }
                 })
         }
@@ -43,17 +53,21 @@ export default class Register extends Component {
     render() {
         return (
             <>
-                <h3 className="text-center">Register</h3>
-                <form action="" onSubmit={this.handleRegister}>
-                    <div className="form-group">
-                        <input type="text" className="form-control my-3" placeholder='Enter Email' name='email' />
-                        <input type="text" className="form-control my-3" placeholder='Enter Username' name='username' />
-                        <input type="password" className="form-control my-3" placeholder='Enter Password' name='password' />
-                        <input type="password" className="form-control my-3" placeholder='Confirm Password' name='confirmPass' />
+                {this.state.redirect ? <Navigate to='/' /> :
+                <>
+                    <h3 className="text-center">Register</h3>
+                    <form action="" onSubmit={this.handleRegister}>
+                        <div className="form-group">
+                            <input type="text" className="form-control my-3" placeholder='Enter Email' name='email' />
+                            <input type="text" className="form-control my-3" placeholder='Enter Username' name='username' />
+                            <input type="password" className="form-control my-3" placeholder='Enter Password' name='password' />
+                            <input type="password" className="form-control my-3" placeholder='Confirm Password' name='confirmPass' />
 
-                        <input type="submit" value="Register" className="btn btn-success w-100" />
-                    </div>
-                </form>
+                            <input type="submit" value="Register" className="btn btn-success w-100" />
+                        </div>
+                    </form>
+                </>
+                }
             </>
         )
     }

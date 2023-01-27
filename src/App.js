@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import ButtonDisplay from "./components/ButtonDisplay";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
-import RacerDisplay from "./components/RacerDisplay";
+// import RacerDisplay from "./components/RacerDisplay";
 import RacerDisplayClass from "./components/RacerDisplayClass";
 import Register from "./components/Register";
 
