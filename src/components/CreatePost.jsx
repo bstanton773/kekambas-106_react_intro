@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function CreatePost() {
+export default function CreatePost(props) {
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!props.loggedIn){
+            props.flashMessage('You must be logged in to view this page', 'danger');
+            navigate('/login');
+        }
+    })
 
     const handleSubmit = event => {
         event.preventDefault();

@@ -56,7 +56,7 @@ function App(props){
                     <Route path='/standings' element={<RacerDisplayClass />} />
                     <Route path='/register' element={<Register flashMessage={flashMessage} />} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} logUserIn={logUserIn} />} />
-                    <Route path='/create' element={<CreatePost />} />
+                    <Route path='/create' element={<CreatePost loggedIn={loggedIn} flashMessage={flashMessage} />} />
                 </Routes>
             </div>
         </>
